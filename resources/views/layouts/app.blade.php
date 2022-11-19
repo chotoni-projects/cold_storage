@@ -13,12 +13,15 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="/css/datatables.min.css">
+        <link rel="stylesheet" href="/css/flatpickr.min.css">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="/js/apexcharts.js" ></script>
         <script src="/js/jquery-3.6.1.slim.min.js" ></script>
         <script src="/js/datatables.min.js" ></script>
+        <script src="/js/socket.io.js"></script>
+        <script src="/js/flatpickr.js"></script>
         
     </head>
     <body class="font-sans antialiased">

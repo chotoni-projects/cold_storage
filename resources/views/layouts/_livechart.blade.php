@@ -1,4 +1,4 @@
-<div class="grid grid-cols-2">
+<div class="grid grid-cols-1 md:grid-cols-2">
     <div class="bg-white rounded-lg p-4 m-2">
         <div>
             <div id="chart1">
@@ -29,8 +29,7 @@
     </div>
 </div>
 <script>
-            
-        var options = {
+var options = {
           series: [{
               name: "Temperature",
               data: []
@@ -40,7 +39,14 @@
             type: 'line',
             zoom: {
               enabled: false
-            }
+            },
+            animations: {
+              enabled: true,
+              easing: 'linear',
+              dynamicAnimation: {
+                speed: 5000
+              }
+            },
           },
           dataLabels: {
             enabled: false
@@ -56,7 +62,11 @@
           },
           xaxis: {
             categories: [],
-          }
+          },
+          yaxis: {
+            max: 100,
+            min: 0
+          },
         };
         options.title = {
           text: 'Temperature 1',
@@ -64,6 +74,8 @@
         }
         var chart1 = new ApexCharts(document.querySelector("#chart1"), options);
         chart1.render();
+
+        
         
         options.title = {
           text: 'Temperature 2',
@@ -85,4 +97,42 @@
         }
         var chart4 = new ApexCharts(document.querySelector("#chart4"), options);
         chart4.render();
-        </script>
+
+        var data = {
+          'Temperature 1': [],
+          'Temperature 2': [],
+          'Temperature 3': [],
+          'Temperature 4': [],
+        }
+        var limit = 10
+        var room = "data";
+        socket.on(room, function(msg) {
+            var arrMsg = JSON.parse(msg)
+            arrMsg.forEach(function(row){
+                if( 'error' in row ) {
+
+                } else {
+                  data[row.label].push({
+                    y: row.value,
+                    x: row.created_at.substr(5,5).replace('-', '/') + ' ' + row.created_at.substr(11,8)
+                  })
+                }
+            });
+            if( data['Temperature 1'].length > limit ) data['Temperature 1'].shift()
+            if( data['Temperature 2'].length > limit ) data['Temperature 2'].shift()
+            if( data['Temperature 3'].length > limit ) data['Temperature 3'].shift()
+            if( data['Temperature 4'].length > limit ) data['Temperature 4'].shift()
+            chart1.updateSeries([{
+              data: data['Temperature 1']
+            }])
+            chart2.updateSeries([{
+              data: data['Temperature 2']
+            }])
+            chart3.updateSeries([{
+              data: data['Temperature 3']
+            }])
+            chart4.updateSeries([{
+              data: data['Temperature 4']
+            }])
+        });
+</script>
