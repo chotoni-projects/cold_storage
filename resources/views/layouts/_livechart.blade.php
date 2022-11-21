@@ -61,11 +61,11 @@ var options = {
             },
           },
           xaxis: {
-            categories: [],
+            type: 'datetime',
           },
           yaxis: {
-            max: 100,
-            min: 0
+            max: 10,
+            min: -50
           },
         };
         options.title = {
@@ -99,10 +99,10 @@ var options = {
         chart4.render();
 
         var data = {
-          'Temperature 1': [],
-          'Temperature 2': [],
-          'Temperature 3': [],
-          'Temperature 4': [],
+          'Temperature1': [],
+          'Temperature2': [],
+          'Temperature3': [],
+          'Temperature4': [],
         }
         var limit = 10
         var room = "data";
@@ -114,25 +114,26 @@ var options = {
                 } else {
                   data[row.label].push({
                     y: row.value,
-                    x: row.created_at.substr(5,5).replace('-', '/') + ' ' + row.created_at.substr(11,8)
+                    // x: row.created_at.substr(5,5).replace('-', '/') + ' ' + row.created_at.substr(11,8)
+                    x: new Date(row.created_at)
                   })
                 }
             });
-            if( data['Temperature 1'].length > limit ) data['Temperature 1'].shift()
-            if( data['Temperature 2'].length > limit ) data['Temperature 2'].shift()
-            if( data['Temperature 3'].length > limit ) data['Temperature 3'].shift()
-            if( data['Temperature 4'].length > limit ) data['Temperature 4'].shift()
+            if( data['Temperature1'].length > limit ) data['Temperature1'].shift()
+            if( data['Temperature2'].length > limit ) data['Temperature2'].shift()
+            if( data['Temperature3'].length > limit ) data['Temperature3'].shift()
+            if( data['Temperature4'].length > limit ) data['Temperature4'].shift()
             chart1.updateSeries([{
-              data: data['Temperature 1']
+              data: data['Temperature1']
             }])
             chart2.updateSeries([{
-              data: data['Temperature 2']
+              data: data['Temperature2']
             }])
             chart3.updateSeries([{
-              data: data['Temperature 3']
+              data: data['Temperature3']
             }])
             chart4.updateSeries([{
-              data: data['Temperature 4']
+              data: data['Temperature4']
             }])
         });
 </script>

@@ -2,6 +2,9 @@
     <div class="p-4 m-2 rounded-lg bg-gradient-to-r from-green-400 to-blue-500 text-white drop-shadow-xl relative">
         <h6 class="text-center">Temperature Cold Storage 1</h6>
         <div class="h-24 relative ">
+            <div class="w-14 absolute left-0 top-5">
+                <img src="/assets/thermo.svg" />
+            </div>
             <div class="flex items-center justify-center h-full">
                 <span id="temperature1" class="text-6xl font-semibold"></span>
                 <span id="unit1" class="text-xl"></span>
@@ -18,6 +21,9 @@
     <div class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
         <h6 class="text-center">Temperature Cold Storage 2</h6>
         <div class="h-24 relative ">
+            <div class="w-14 absolute left-0 top-5">
+                <img src="/assets/thermo.svg" />
+            </div>
             <div class="flex items-center justify-center h-full">
                 <span id="temperature2" class="text-6xl font-semibold"></span>
                 <span id="unit2" class="text-xl"></span>
@@ -34,6 +40,9 @@
     <div class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
         <h6 class="text-center">Temperature Cold Storage 3</h6>
         <div class="h-24 relative ">
+            <div class="w-14 absolute left-0 top-4">
+                <img src="/assets/thermo.svg" />
+            </div>
             <div class="flex items-center justify-center h-full">
                 <span id="temperature3" class="text-6xl font-semibold"></span>
                 <span id="unit3" class="text-xl"></span>
@@ -50,6 +59,9 @@
     <div class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
         <h6 class="text-center">Temperature Cold Storage 4</h6>
         <div class="h-24 relative ">
+            <div class="w-14 absolute left-0 top-5">
+                <img src="/assets/thermo.svg" />
+            </div>
             <div class="flex items-center justify-center h-full">
                 <span id="temperature4" class="text-6xl font-semibold"></span>
                 <span id="unit4" class="text-xl"></span>
@@ -86,6 +98,7 @@
             } else {
                 setError(sensorIndex, false )
                 $(`#temperature${sensorIndex}`).text(row.value)
+                $(`#unit${sensorIndex}`).html('&#8451;')
             }
         });
         console.log(msg)
