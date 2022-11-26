@@ -23,6 +23,7 @@
         <script src="/js/socket.io.js"></script>
         <script src="/js/flatpickr.js"></script>
         <script src="/js/xlsx.full.min.js"></script>
+        <script src="/js/xlsx-populate.min.js"></script>
         
     </head>
     <body class="font-sans antialiased">
