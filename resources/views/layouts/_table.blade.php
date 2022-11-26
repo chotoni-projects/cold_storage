@@ -12,8 +12,10 @@
         <thead>
             <tr>
                 <th>Datetime</th>
-                <th>Area Name</th>
-                <th>Value</th>
+                <th>Export Temperature 1</th>
+                <th>Export Temperature 2</th>
+                <th>Import Temperature 1</th>
+                <th>Import Temperature 2</th>
             </tr>
         </thead>
         <tbody>
@@ -28,14 +30,22 @@ $(document).ready(function () {
     mode: "range"
   });
   var dataset = [];
+  var convert = function (row) {
+    return row.forEach( function(doc){
+      doc.created_at = doc.created_at.substr(0,19).replace('T', ' ')
+      return doc
+    } )
+  }
   var table = $('#report_table').DataTable({
     data: dataset,
-    order: [[0, 'desc']],
+    ordering: false,
     columns: [
             { data: 'created_at' },
-            { data: 'name' },
-            { data: 'value' },
-        ],
+            { data: 'value1' },
+            { data: 'value2' },
+            { data: 'value3' },
+            { data: 'value4' },
+        ]
   });
   $('#submit').on('click', function(){
     $('#submit').attr('disabled', 'disabled');
@@ -48,13 +58,13 @@ $(document).ready(function () {
       })
     }
     fetch('/api/logging/?' + param ).then((response) => response.json()).then((data) => {
-      dataset = data;
+      dataset = convert(data);
       table.clear().rows.add(data).draw();
       $('#submit').removeAttr('disabled');
     });  
   })
   fetch('/api/logging/' ).then((response) => response.json()).then((data) => {
-      dataset = data;
+      dataset = convert(data);
       table.clear().rows.add(data).draw();
       $('#submit').removeAttr('disabled');
   });

@@ -1,3 +1,8 @@
+<div class="flex bg-white rounded-lg w-full py-2 gap-4 px-4">
+    <input id="min" class="block w-max-[250px] px-2 py-0 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 "></input>
+    <input id="max" class="block w-max-[250px] px-2 py-0 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 "></input>
+    <button id="setminmax" class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Set Chart</button>
+</div>
 <div class="grid grid-cols-1 md:grid-cols-2">
     <div class="bg-white rounded-lg p-4 m-2">
         <div>
