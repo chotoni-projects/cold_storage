@@ -20,9 +20,6 @@
                     <x-nav-link :href="route('report')" :active="request()->routeIs('report')">
                         {{ __('Report') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('setting')" :active="request()->routeIs('setting')">
-                        {{ __('Settings') }}
-                    </x-nav-link>
                 </div>
             </div>
 
