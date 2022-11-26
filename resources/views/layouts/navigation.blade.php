@@ -6,7 +6,9 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <div class="w-32">
+                            <img class="w-full" src="/assets/Logo JAS.svg" />
+                        </div>
                     </a>
                 </div>
 

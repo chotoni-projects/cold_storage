@@ -22,7 +22,7 @@ class LoggingsController extends Controller
         } else {
             $logging = Logging::orderBy('created_at', 'desc')->take(1000)->latest()->get();
         }
-        return $logging->toArray();
+        return array_reverse($logging->toArray());
     }
 
     /**

@@ -69,7 +69,7 @@ var options = {
           },
         };
         options.title = {
-          text: 'Temperature 1',
+          text: 'Temperature Cold Storage Export 1',
           align: 'center'
         }
         var chart1 = new ApexCharts(document.querySelector("#chart1"), options);
@@ -78,21 +78,21 @@ var options = {
         
         
         options.title = {
-          text: 'Temperature 2',
+          text: 'Temperature Cold Storage Export 2',
           align: 'center'
         }
         var chart2 = new ApexCharts(document.querySelector("#chart2"), options);
         chart2.render();
         
         options.title = {
-          text: 'Temperature 3',
+          text: 'Temperature Cold Storage Import 1',
           align: 'center'
         }
         var chart3 = new ApexCharts(document.querySelector("#chart3"), options);
         chart3.render();
         
         options.title = {
-          text: 'Temperature 4',
+          text: 'Temperature Cold Storage Import 2',
           align: 'center'
         }
         var chart4 = new ApexCharts(document.querySelector("#chart4"), options);
@@ -104,6 +104,12 @@ var options = {
           'Temperature3': [],
           'Temperature4': [],
         }
+        var labels = [
+            'Cold Storage Export 1',
+            'Cold Storage Export 2',
+            'Cold Storage Import 1',
+            'Cold Storage Import 2',
+        ]
         var limit = 10
         var room = "data";
         socket.on(room, function(msg) {
@@ -112,7 +118,8 @@ var options = {
                 if( 'error' in row ) {
 
                 } else {
-                  data[row.label].push({
+                  // console.log('Temperature' + ((labels.indexOf(row.label) *1) + 1))
+                  data[ 'Temperature' + ((labels.indexOf(row.label) *1) + 1) ].push({
                     y: row.value,
                     // x: row.created_at.substr(5,5).replace('-', '/') + ' ' + row.created_at.substr(11,8)
                     x: new Date(row.created_at)

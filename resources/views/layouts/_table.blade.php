@@ -30,6 +30,7 @@ $(document).ready(function () {
   var dataset = [];
   var table = $('#report_table').DataTable({
     data: dataset,
+    order: [[0, 'desc']],
     columns: [
             { data: 'created_at' },
             { data: 'name' },
@@ -42,8 +43,8 @@ $(document).ready(function () {
     var param = ''
     if( daterange != '' ) {
       param = new URLSearchParams({
-          from: daterange.split('to')[0].trim(),
-          to: daterange.split('to')[1].trim(),
+          from: daterange.indexOf('to') > -1 ? daterange.split('to')[0].trim() : daterange,
+          to: daterange.indexOf('to') > -1 ? daterange.split('to')[1].trim() : daterange,
       })
     }
     fetch('/api/logging/?' + param ).then((response) => response.json()).then((data) => {

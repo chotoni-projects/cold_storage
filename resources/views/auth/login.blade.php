@@ -1,9 +1,9 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <div class="w-64">
+                <img class="w-full" src="/assets/Logo JAS.svg" />
+            </div>
         </x-slot>
 
         <!-- Session Status -->

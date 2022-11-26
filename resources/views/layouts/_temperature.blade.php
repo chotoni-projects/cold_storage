@@ -1,6 +1,6 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
     <div class="p-4 m-2 rounded-lg bg-gradient-to-r from-green-400 to-blue-500 text-white drop-shadow-xl relative">
-        <h6 class="text-center">Temperature Cold Storage 1</h6>
+        <h6 class="text-center">Temperature Cold Storage Export 1</h6>
         <div class="h-24 relative ">
             <div class="w-14 absolute left-0 top-5">
                 <img src="/assets/thermo.svg" />
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
-        <h6 class="text-center">Temperature Cold Storage 2</h6>
+        <h6 class="text-center">Temperature Cold Storage Export 2</h6>
         <div class="h-24 relative ">
             <div class="w-14 absolute left-0 top-5">
                 <img src="/assets/thermo.svg" />
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
-        <h6 class="text-center">Temperature Cold Storage 3</h6>
+        <h6 class="text-center">Temperature Cold Storage Import 1</h6>
         <div class="h-24 relative ">
             <div class="w-14 absolute left-0 top-4">
                 <img src="/assets/thermo.svg" />
@@ -57,7 +57,7 @@
         </div>
     </div>
     <div class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
-        <h6 class="text-center">Temperature Cold Storage 4</h6>
+        <h6 class="text-center">Temperature Cold Storage Import 2</h6>
         <div class="h-24 relative ">
             <div class="w-14 absolute left-0 top-5">
                 <img src="/assets/thermo.svg" />
@@ -77,6 +77,13 @@
     </div>
 </div>
 <script>
+    
+    var labels = [
+            'Cold Storage Export 1',
+            'Cold Storage Export 2',
+            'Cold Storage Import 1',
+            'Cold Storage Import 2',
+    ]
     var setError = function( index, show, message ) {
         if( show ) {
             $(`#error${index}`).removeClass('hidden')
@@ -87,12 +94,19 @@
             $(`#errorText${index}`).text('')
         }
     } 
-    socket = io('http://localhost:3000');
+    socket = io('http://'+ location.hostname +':3000');
+    var flag = new Date().getTime()
     var room = "data";
+    
+    setInterval(() => {
+        if( (new Date().getTime() - flag) > (1 * 60 * 1000)  ) window.location.reload()
+    }, 0.5 * 60 * 1000);
+
     socket.on(room, function(msg) {
+        flag = new Date().getTime()
         var arrMsg = JSON.parse(msg)
         arrMsg.forEach(function(row){
-            var sensorIndex = row.label.substr(-1)
+            var sensorIndex = ((labels.indexOf(row.label) *1) + 1)
             if( 'error' in row ) {
                 setError(sensorIndex, true, row.error)
             } else {
@@ -101,6 +115,5 @@
                 $(`#unit${sensorIndex}`).html('&#8451;')
             }
         });
-        console.log(msg)
     });
 </script>
