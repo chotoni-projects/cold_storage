@@ -18,7 +18,7 @@ class LoggingsController extends Controller
         $from = $request->input('from');
         $to = $request->input('to');
         if( $from && $to ) {
-            $logging = Logging::whereBetween('created_at', [$from, $to])->orderBy('created_at', 'desc')->limit(1000)->latest()->get();
+            $logging = Logging::whereBetween('created_at', [$from, $to])->orderBy('created_at', 'desc')->latest()->get();
         } else {
             $logging = Logging::orderBy('created_at', 'desc')->latest()->limit(1000)->get();
             
