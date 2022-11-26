@@ -40,11 +40,11 @@ $(document).ready(function () {
     data: dataset,
     ordering: false,
     columns: [
-            { data: 'created_at' },
-            { data: 'value1' },
-            { data: 'value2' },
-            { data: 'value3' },
-            { data: 'value4' },
+            { width: "30%", data: 'created_at', className: 'text-center'  },
+            { data: 'value1', className: 'text-center' },
+            { data: 'value2', className: 'text-center'  },
+            { data: 'value3', className: 'text-center'  },
+            { data: 'value4', className: 'text-center'  },
         ]
   });
   $('#submit').on('click', function(){

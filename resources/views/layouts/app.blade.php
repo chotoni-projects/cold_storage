@@ -14,6 +14,11 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="/css/datatables.min.css">
         <link rel="stylesheet" href="/css/flatpickr.min.css">
+        <style>
+            label select {
+                background-position: left 1.1rem center;
+            }
+        </style>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
