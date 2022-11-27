@@ -21,6 +21,7 @@ class CreateSettingsTable extends Migration
             $table->integer('port');
             $table->integer('interval');
             $table->string('notification');
+            $table->string('subject');
             $table->timestamps();
         });
     }

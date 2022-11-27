@@ -18,6 +18,6 @@ class Setting extends Model
      * @var array
      */
     protected $fillable = [
-        'from', 'to', 'password', 'notification', 'id', 'interval', 'host', 'port'
+        'from', 'to', 'password', 'notification', 'id', 'interval', 'host', 'port', 'subject'
     ];
 }

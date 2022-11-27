@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             'interval'      => 15,
             'host'          => '50.1.1.7',
             'port'          => 25,
-            'notification'  => 'enable'
+            'notification'  => 'enable',
+            'subject'       => 'JAS Surabaya Cold Storage Alert'
         ]);
     }
 }

@@ -33,7 +33,8 @@ class SettingController extends Controller
                 'interval'      => 'required|integer',
                 'host'          => 'required',
                 'port'          => 'required|integer',
-                'notification'  => 'required'
+                'notification'  => 'required',
+                'subject'       => 'required'
             ]);
             // dd($hasil);
             // $notif = $request->get('notification');
