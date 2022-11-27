@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,9 @@ Route::get('/report', function () {
     return view('report');
 })->middleware(['auth'])->name('report');
 
-Route::get('/setting', function () {
-    return view('report');
-})->middleware(['auth'])->name('setting');
+
+Route::get('setting', [SettingController::class, 'index'])->middleware(['auth'])->name('setting');
+Route::post('store-setting/{id}', [SettingController::class, 'store']);
+
 
 require __DIR__.'/auth.php';
