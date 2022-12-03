@@ -67,7 +67,7 @@ $(document).ready(function () {
   $("#datepicker").on('change', function(){
     var dateData = $('#datepicker').val()
     $( "#livestream" ).prop( "checked", false );
-    console.log(dateData)
+    clearInterval(loopTable)
   })
   dataset = [];
   var convert = function (row) {
