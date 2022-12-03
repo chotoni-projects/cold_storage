@@ -106,6 +106,7 @@
     socket = io('http://'+ location.hostname +':3000');
     var flag = new Date().getTime()
     var room = "data";
+    var alarm = "alarm";
     
     setInterval(() => {
         if( (new Date().getTime() - flag) > (1 * 60 * 1000)  ) window.location.reload()
@@ -125,7 +126,7 @@
             }
         });
     });
-    socket.on('email', function(msg) {
+    socket.on(alarm, function(msg) {
         console.log(msg)
         var arrMsg = JSON.parse(msg)
         arrMsg.forEach(function(row){
