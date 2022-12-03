@@ -126,6 +126,7 @@
         });
     });
     socket.on('email', function(msg) {
+        console.log(msg)
         var arrMsg = JSON.parse(msg)
         arrMsg.forEach(function(row){
             if( row.label.indexOf('Export 1') > -1 ) setAlert(1);
