@@ -1,6 +1,6 @@
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
-    <div class="p-4 m-2 rounded-lg bg-gradient-to-r from-green-400 to-blue-500 text-white drop-shadow-xl relative">
+    <div id="card1" class="p-4 m-2 rounded-lg bg-gradient-to-r from-green-400 to-blue-500 text-white drop-shadow-xl relative">
         <h6 class="text-center">Temperature Cold Storage Export 1</h6>
         <div class="h-24 relative ">
             <div class="w-14 absolute left-0 top-5">
@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
+    <div id="card2" class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
         <h6 class="text-center">Temperature Cold Storage Export 2</h6>
         <div class="h-24 relative ">
             <div class="w-14 absolute left-0 top-5">
@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-    <div class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
+    <div id="card3" class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
         <h6 class="text-center">Temperature Cold Storage Import 1</h6>
         <div class="h-24 relative ">
             <div class="w-14 absolute left-0 top-4">
@@ -57,7 +57,7 @@
             </div>
         </div>
     </div>
-    <div class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
+    <div id="card4" class="p-4 m-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg  text-white drop-shadow-xl">
         <h6 class="text-center">Temperature Cold Storage Import 2</h6>
         <div class="h-24 relative ">
             <div class="w-14 absolute left-0 top-5">
@@ -95,6 +95,14 @@
             $(`#errorText${index}`).text('')
         }
     } 
+    var setAlert = function( index ) {
+        $(`#card${index}`).removeClass('bg-gradient-to-r from-green-400 to-blue-500')
+        $(`#card${index}`).addClass('bg-red-400')
+        setTimeout(() => {
+            $(`#card${index}`).addClass('bg-gradient-to-r from-green-400 to-blue-500')
+            $(`#card${index}`).removeClass('bg-red-400')
+        }, 3000);
+    }
     socket = io('http://'+ location.hostname +':3000');
     var flag = new Date().getTime()
     var room = "data";
@@ -117,4 +125,15 @@
             }
         });
     });
+    socket.on('email', function(msg) {
+        var arrMsg = JSON.parse(msg)
+        arrMsg.forEach(function(row){
+            if( row.label.indexOf('Export 1') > -1 ) setAlert(1);
+            else if( row.label.indexOf('Export 2') > -1 ) setAlert(2);
+            else if( row.label.indexOf('Import 1') > -1 ) setAlert(3);
+            else if( row.label.indexOf('Import 2') > -1 ) setAlert(4);
+        });
+    });
+
+
 </script>
